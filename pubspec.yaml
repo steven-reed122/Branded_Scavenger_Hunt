@@ -52,6 +52,29 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  fonts:
+    - family: Proxima Nova
+      fonts:
+        - asset: fonts/proximanova_regular.ttf
+        - asset: fonts/proximanova_bold.otf
+          weight: 700
+        - asset: fonts/proximanova_boldit.otf
+          weight: 700
+          style: italic
+        - asset: fonts/proximanova_black.otf
+          weight: 900
+        - asset: fonts/proximanova_black.ttf
+          weight: 900
+        - asset: fonts/proximanova_blackit.otf
+          weight: 900
+          style: italic
+        - asset: fonts/proximanova_extrabold.otf
+          weight: 800
+        - asset: fonts/proximanova_light.otf
+          weight: 300
+
+
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

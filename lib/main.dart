@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF461D7C)),
         useMaterial3: true,
+        fontFamily: 'Proxima Nova', // Default font set
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontFamily: "Proxima Nova"),
+          bodyMedium: TextStyle(fontFamily: "Proxima Nova"),
+          bodySmall: TextStyle(fontFamily: "Proxima Nova"),
+        ),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

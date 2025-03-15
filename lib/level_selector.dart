@@ -11,6 +11,9 @@ class LevelSelector extends StatefulWidget {
 
 class _LevelSelectorState extends State<LevelSelector> {
   int _selectedIndex = 1; // Default to "Levels" being selected
+  String levelOne = "1";
+  String levelTwo = "2";
+  String levelThree = "3";
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
@@ -43,21 +46,62 @@ class _LevelSelectorState extends State<LevelSelector> {
         title: Text('Explore Level $level',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         trailing: const Icon(Icons.arrow_forward_ios),
-        onTap: () {},
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              title: Text('Pick a location on level $level'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Location 1 on Level $level"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Location 2 on Level $level"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Location 3 on Level $level"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Location 4 on Level $level"),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF461D7C),
+        title: const Text(
+          'Maybe LSU logo will go here',
+          style: TextStyle(color: Color(0xFFFFFFFF)),
+        ),
+      ),
       body: Column(
-        children: [_buildLevelCard("1", Icons.check)],
+        children: [
+          _buildLevelCard("1", Icons.check),
+          _buildLevelCard("2", Icons.check),
+          _buildLevelCard("3", Icons.check),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFFFFFFFF),
         selectedItemColor: Color(0xFFFDD023),
         unselectedItemColor: Color(0xFF461D7C),
+
         currentIndex: _selectedIndex, // Ensure the correct tab is highlighted
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
