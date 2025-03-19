@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'progress.dart';
+import 'level.dart';
 
 class LevelSelector extends StatefulWidget {
   const LevelSelector({super.key});
@@ -11,9 +12,6 @@ class LevelSelector extends StatefulWidget {
 
 class _LevelSelectorState extends State<LevelSelector> {
   int _selectedIndex = 1; // Default to "Levels" being selected
-  String levelOne = "1";
-  String levelTwo = "2";
-  String levelThree = "3";
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
@@ -24,11 +22,11 @@ class _LevelSelectorState extends State<LevelSelector> {
 
     Widget destination;
     if (index == 1) {
-      destination = LevelSelector();
+      destination = const LevelSelector();
     } else if (index == 2) {
-      destination = ProgressPage();
+      destination = const ProgressPage();
     } else {
-      destination = MyHomePage(title: 'Flutter Demo Home Page');
+      destination = const MyHomePage(title: 'Flutter Demo Home Page');
     }
 
     Navigator.pushReplacement(
@@ -42,36 +40,21 @@ class _LevelSelectorState extends State<LevelSelector> {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: ListTile(
-        leading: Icon(icon, size: 36, color: Colors.blueAccent),
-        title: Text('Explore Level $level',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        trailing: const Icon(Icons.arrow_forward_ios),
+        leading: Icon(icon, size: 36, color: const Color(0xFF461D7C)),
+        title: Text(
+          'Explore Level $level',
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF461D7C),
+          ),
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, color: Color(0xFF461D7C)),
         onTap: () {
-          showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-              title: Text('Pick a location on level $level'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Location 1 on Level $level"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Location 2 on Level $level"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Location 3 on Level $level"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Location 4 on Level $level"),
-                  ),
-                ],
-              ),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LevelPage(level: level),
             ),
           );
         },
@@ -79,30 +62,31 @@ class _LevelSelectorState extends State<LevelSelector> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF461D7C),
+        backgroundColor: const Color(0xFF461D7C),
         title: const Text(
           'Maybe LSU logo will go here',
           style: TextStyle(color: Color(0xFFFFFFFF)),
         ),
       ),
-      body: Column(
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
         children: [
-          _buildLevelCard("1", Icons.check),
-          _buildLevelCard("2", Icons.check),
-          _buildLevelCard("3", Icons.check),
+          _buildLevelCard("1", Icons.looks_one),
+          const SizedBox(height: 8),
+          _buildLevelCard("2", Icons.looks_two),
+          const SizedBox(height: 8),
+          _buildLevelCard("3", Icons.looks_3),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFFFFFFFF),
-        selectedItemColor: Color(0xFFFDD023),
-        unselectedItemColor: Color(0xFF461D7C),
-
-        currentIndex: _selectedIndex, // Ensure the correct tab is highlighted
+        backgroundColor: const Color(0xFFFFFFFF),
+        selectedItemColor: const Color(0xFFFDD023),
+        unselectedItemColor: const Color(0xFF461D7C),
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

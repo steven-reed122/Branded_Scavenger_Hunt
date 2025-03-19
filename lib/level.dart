@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'level.dart';
-//import 'location_page.dart';
+import 'riddle_data.dart';
+import 'location_page.dart';
 
 class LevelPage extends StatelessWidget {
   final String level;
@@ -8,12 +8,13 @@ class LevelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locations = RiddleData.locations[level] ?? [];
 
     return Scaffold(
-      backgroundColor: Color(0xFF461D7C),
+      backgroundColor: const Color(0xFF461D7C),
       appBar: AppBar(
         title: Text('Level $level'),
-        backgroundColor: Color(0xFF461D7C),
+        backgroundColor: const Color(0xFF461D7C),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -52,45 +53,37 @@ class LevelPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              /// ✅ Location 1 Button
-              ElevatedButton(
-                onPressed: () { /*
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          LocationPage(level: level, locationNumber: 1),
+              /// ✅ Location Buttons
+              ...locations.map((locationName) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => LocationPage(
+                          level: level,
+                          locationName: locationName,
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFDD023),
+                    foregroundColor: Colors.black,
+                    minimumSize: const Size(180, 50),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
                     ),
-                  );*/
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFDD023),
-                  foregroundColor: Colors.black,
-                  minimumSize: const Size(180, 50),
+                  ),
+                  child: Text(
+                    locationName,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 ),
-                child: const Text('Location 1'),
-              ),
-
-              const SizedBox(height: 12),
-
-              /// ✅ Location 2 Button
-              ElevatedButton(
-                onPressed: () { /*
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          LocationPage(level: level, locationNumber: 2),
-                    ),
-                  ); */
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFDD023),
-                  foregroundColor: Colors.black,
-                  minimumSize: const Size(180, 50),
-                ),
-                child: const Text('Location 2'),
-              ),
+              )).toList(),
             ],
           ),
         ),

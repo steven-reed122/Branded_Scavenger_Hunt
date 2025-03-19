@@ -1,0 +1,183 @@
+import 'package:flutter/material.dart';
+import 'riddle_data.dart';
+
+class LocationPage extends StatefulWidget {
+  final String level;
+  final String locationName;
+
+  const LocationPage({
+    Key? key,
+    required this.level,
+    required this.locationName,
+  }) : super(key: key);
+
+  @override
+  _LocationPageState createState() => _LocationPageState();
+}
+
+class _LocationPageState extends State<LocationPage> {
+  final TextEditingController _answerController = TextEditingController();
+  String? _feedback;
+  bool _isCorrect = false;
+  bool _showFunFact = false;
+
+  String get _riddleText {
+    final levelRiddles = RiddleData.riddles[widget.level] ?? [];
+    for (final riddle in levelRiddles) {
+      if (riddle[0] == widget.locationName) {
+        return riddle[1];
+      }
+    }
+    return 'Riddle not found';
+  }
+
+  void _checkAnswer() {
+    final correctAnswer = RiddleData.correctKeywords[widget.locationName] ?? '';
+    if (_answerController.text.trim().toLowerCase() ==
+        correctAnswer.toLowerCase()) {
+      setState(() {
+        _feedback = 'Correct! 🎉';
+        _isCorrect = true;
+        _showFunFact = true;
+      });
+    } else {
+      setState(() {
+        _feedback = 'Try again! 🤔';
+        _isCorrect = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF461D7C),
+        title: Text(
+          widget.locationName,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+      backgroundColor: const Color(0xFF461D7C),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Riddle Card
+            Card(
+              elevation: 4,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Riddle',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF461D7C),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      _riddleText,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        height: 1.5,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            
+            // Answer Input
+            if (!_isCorrect) ...[
+              TextField(
+                controller: _answerController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your answer',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                style: const TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _checkAnswer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFDD023),
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                child: const Text(
+                  'Submit Answer',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ],
+
+            // Feedback
+            if (_feedback != null) ...[
+              const SizedBox(height: 16),
+              Text(
+                _feedback!,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: _isCorrect ? Colors.green : Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+
+            // Fun Fact
+            if (_showFunFact) ...[
+              const SizedBox(height: 24),
+              Card(
+                elevation: 4,
+                color: const Color(0xFFFDD023),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      const Text(
+                        '🎓 Fun Fact',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        RiddleData.funFacts[widget.locationName] ?? '',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          height: 1.5,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _answerController.dispose();
+    super.dispose();
+  }
+} 
