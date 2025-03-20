@@ -47,6 +47,7 @@ class _LevelSelectorState extends State<LevelSelector> {
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Color(0xFF461D7C),
+            fontFamily: 'Proxima Nova',
           ),
         ),
         trailing: const Icon(Icons.arrow_forward_ios, color: Color(0xFF461D7C)),
@@ -69,7 +70,10 @@ class _LevelSelectorState extends State<LevelSelector> {
         backgroundColor: const Color(0xFF461D7C),
         title: const Text(
           'Maybe LSU logo will go here',
-          style: TextStyle(color: Color(0xFFFFFFFF)),
+          style: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontFamily: 'Proxima Nova',
+          ),
         ),
       ),
       body: ListView(
@@ -88,6 +92,8 @@ class _LevelSelectorState extends State<LevelSelector> {
         unselectedItemColor: const Color(0xFF461D7C),
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        selectedLabelStyle: const TextStyle(fontFamily: 'Proxima Nova'),
+        unselectedLabelStyle: const TextStyle(fontFamily: 'Proxima Nova'),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

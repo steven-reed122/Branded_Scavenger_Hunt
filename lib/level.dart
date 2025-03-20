@@ -13,7 +13,13 @@ class LevelPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF461D7C),
       appBar: AppBar(
-        title: Text('Level $level'),
+        title: Text(
+          'Level $level',
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Proxima Nova',
+          ),
+        ),
         backgroundColor: const Color(0xFF461D7C),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -39,6 +45,7 @@ class LevelPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: 1.5,
+                    fontFamily: 'Proxima Nova',
                     shadows: [
                       Shadow(
                         color: Colors.black54,
@@ -80,7 +87,10 @@ class LevelPage extends StatelessWidget {
                   child: Text(
                     locationName,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Proxima Nova',
+                    ),
                   ),
                 ),
               )).toList(),

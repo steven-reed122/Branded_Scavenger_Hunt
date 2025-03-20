@@ -55,7 +55,10 @@ class _LocationPageState extends State<LocationPage> {
         backgroundColor: const Color(0xFF461D7C),
         title: Text(
           widget.locationName,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Proxima Nova',
+          ),
         ),
       ),
       backgroundColor: const Color(0xFF461D7C),
@@ -78,6 +81,7 @@ class _LocationPageState extends State<LocationPage> {
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF461D7C),
+                        fontFamily: 'Proxima Nova',
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -86,6 +90,7 @@ class _LocationPageState extends State<LocationPage> {
                       style: const TextStyle(
                         fontSize: 18,
                         height: 1.5,
+                        fontFamily: 'Proxima Nova',
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -106,8 +111,14 @@ class _LocationPageState extends State<LocationPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  hintStyle: const TextStyle(
+                    fontFamily: 'Proxima Nova',
+                  ),
                 ),
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Proxima Nova',
+                ),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
@@ -119,7 +130,10 @@ class _LocationPageState extends State<LocationPage> {
                 ),
                 child: const Text(
                   'Submit Answer',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Proxima Nova',
+                  ),
                 ),
               ),
             ],
@@ -133,6 +147,7 @@ class _LocationPageState extends State<LocationPage> {
                   fontSize: 20,
                   color: _isCorrect ? Colors.green : Colors.red,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Proxima Nova',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -153,6 +168,7 @@ class _LocationPageState extends State<LocationPage> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'Proxima Nova',
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -161,6 +177,7 @@ class _LocationPageState extends State<LocationPage> {
                         style: const TextStyle(
                           fontSize: 16,
                           height: 1.5,
+                          fontFamily: 'Proxima Nova',
                         ),
                         textAlign: TextAlign.center,
                       ),
