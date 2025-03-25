@@ -17,22 +17,23 @@ class _LevelSelectorState extends State<LevelSelector> {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
 
     setState(() {
-      _selectedIndex = index; // Update selected tab
+      _selectedIndex = index;
     });
 
-    Widget destination;
-    if (index == 1) {
-      destination = const LevelSelector();
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                const MyHomePage(title: 'Flutter Demo Home Page')),
+      );
     } else if (index == 2) {
-      destination = const ProgressPage();
-    } else {
-      destination = const MyHomePage(title: 'Flutter Demo Home Page');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProgressPage()),
+      );
     }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => destination),
-    );
+    // For index 1 (levels), we don't need to navigate since we're already on LevelSelector
   }
 
   Widget _buildLevelCard(String level, IconData icon) {

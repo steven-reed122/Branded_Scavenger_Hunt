@@ -22,16 +22,23 @@ class _LocationPageState extends State<LocationPage> {
   bool _showFunFact = false;
 
   String get _riddleText {
-    final levelRiddles = RiddleData.riddles[widget.level]
-        ?.expand((entry) => entry) // Flatten the inner lists
-        .map((map) => map.values.first.first) // Extract the riddle text
-        .toList() ?? [];
-    for (final riddle in levelRiddles) {
-      if (riddle[0] == widget.locationName) {
-        return riddle[1];
+    // Find the level in the riddles map
+    final levelRiddles = RiddleData.riddles[widget.level];
+
+    // If the level exists, proceed to find the location
+    if (levelRiddles != null) {
+      for (final entry in levelRiddles) {
+        for (final riddle in entry) {
+          if (riddle.containsKey(widget.locationName)) {
+            // Return the riddle text for the location
+            return riddle[widget.locationName]?[0] ?? 'Riddle not found';
+          }
+        }
       }
     }
-    return 'Riddle not found';
+
+    // Return an appropriate message if the riddle is not found
+    return 'Riddle not found for the location $widget.locationName at level $widget.level';
   }
 
   void _checkAnswer() {
@@ -39,7 +46,9 @@ class _LocationPageState extends State<LocationPage> {
         ?.expand((entry) => entry) // Flatten the inner lists
         .firstWhere(
             (map) => map.containsKey(widget.locationName),
-        orElse: () => {})[widget.locationName]!.last;
+        orElse: () => {})[widget.locationName]![1];
+    print("Answer");
+    print(correctAnswer);
     if (_answerController.text.trim().toLowerCase() ==
         correctAnswer?.toLowerCase()) {
       setState(() {
@@ -180,7 +189,7 @@ class _LocationPageState extends State<LocationPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        RiddleData.funFacts[widget.locationName] ?? '',
+                        RiddleData.getFunFact(widget.level, widget.locationName),
                         style: const TextStyle(
                           fontSize: 16,
                           height: 1.5,

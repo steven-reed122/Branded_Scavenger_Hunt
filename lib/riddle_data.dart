@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RiddleData {
-
   static final Map<String, List<List<Map<String, List<String>>>>> riddles = {
     "1": [
       [
@@ -13,7 +12,8 @@ Steamed milk swirls in coffee's embrace,
 A creamy sip, a warm embrace. 
 
 What drink am I? ☕""",
-            "Latte"
+            "Latte",
+            'They serve over a thousand students every day!'
           ]
         }
       ],
@@ -28,7 +28,8 @@ That to the creation of building I donated with pride,
 My name is known in timber, far and wide.
 
 What Company I? 🌲""",
-            "RoyOMartin"
+            "RoyOMartin",
+            'RoyOMartin is one of the most successful manufacturers of wood products in the South!'
           ]
         }
       ],
@@ -46,7 +47,8 @@ My donator's name is on a plaque in front.
 He goes by a nickname which may seem quite blunt.
 
 What is the nickname of the person who donated to me?""",
-            "Bill"
+            "Bill",
+            'This is one of the most popular spots for students to rest between classes and study with friends.'
           ]
         }
       ],
@@ -62,7 +64,8 @@ Who is this robot, standing so near?
 His name is known to all who come here.
 
 What am I? 🤖""",
-            "Toby"
+            "Toby",
+            'Every year Bengal Bots, a club that offers experience with different types of robots, hosts a battlebots event at PFT!'
           ]
         }
       ],
@@ -80,7 +83,8 @@ The room's name, where brilliance does reside,
 Is the School of Electrical Engineering and Computer Science Office, where minds collide.
 
 What is my room number?""",
-            "3325"
+            "3325",
+            'This is where many students can come to learn more about what Computer Science and Electrical Engineering has to offer.'
           ]
         }
       ],
@@ -98,26 +102,26 @@ Can you guess what these numbers might be,
 To unlock the answer and set you free?
 
 What are the last four digits of the number you'll see?""",
-            "1229"
+            "1229",
+            'A multi-pass floating head can allow for fluids to pass through the tubes multiple times, increasing the heat transfer efficiency!'
           ]
         }
       ],
     ],
   };
 
+  static String getFunFact(String level, String locationName) {
+    final levelRiddles = riddles[level];
 
-  static final Map<String, String> funFacts = {
-    '1st Story - Panera':
-        'Fun Fact: They serve over a thousand students every day!',
-    '1st Story - Auditorium':
-        'Fun Fact: RoyOMartin is one of the most successful manufacturers of wood products in the South!',
-    '2nd Story - Student Gathering Space':
-        'Fun Fact: This is one of the most popular spots for students to rest between classes and study with friends.',
-    '2nd Story - Robots':
-        'Every year Bengal Bots, a club that offers experience with different types of robots, hosts a battlebots event at PFT!',
-    '3rd Story - School of EE and CS':
-        'Fun fact: This is where many students can come to learn more about what Computer Science and Electrical Engineering has to offer.',
-    '3rd Story - Bayport Technical Center':
-        'Fun Fact: A multi-pass floating head can allow for fluids to pass through the tubes multiple times, increasing the heat transfer efficiency!',
-  };
+    if (levelRiddles != null) {
+      for (final entry in levelRiddles) {
+        for (final riddle in entry) {
+          if (riddle.containsKey(locationName)) {
+            return riddle[locationName]![2];  // Fun fact is the third element
+          }
+        }
+      }
+    }
+    return 'Fun fact not found';
+  }
 }

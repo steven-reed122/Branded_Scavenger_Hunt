@@ -45,22 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
 
     setState(() {
-      _selectedIndex = index; // Update selected tab
+      _selectedIndex = index;
     });
 
-    Widget destination;
     if (index == 1) {
-      destination = LevelSelector();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LevelSelector()),
+      );
     } else if (index == 2) {
-      destination = ProgressPage();
-    } else {
-      destination = MyHomePage(title: 'Flutter Demo Home Page');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProgressPage()),
+      );
     }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => destination),
-    );
+    // For index 0 (home), we don't need to navigate since we're already on MyHomePage
   }
 
   @override
