@@ -1,3 +1,4 @@
+import 'package:branded_scavenger_hunt/riddle_data.dart';
 import 'package:flutter/material.dart';
 import 'level.dart';
 import 'main.dart';
@@ -19,6 +20,8 @@ class _ProgressPageState extends State<ProgressPage> {
     "3": false,
     "4": false,
   };
+
+  var progress = RiddleData.getLocationStatus();
 
   void textReturn(String value) {
     String text = "50";
@@ -100,7 +103,7 @@ class _ProgressPageState extends State<ProgressPage> {
         children: [Column(
           children: [
             Text("You've completed $_sampleString% of the scavenger hunt"),
-            _buildProgressSection(placeHolderProgress),
+            _buildProgressSection(progress),
           ],
         )],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RiddleData {
-  static final Map<String, List<List<Map<String, List<String>>>>> riddles = {
+  static final Map<String, List<List<Map<String, List<dynamic>>>>> riddles = {
     "1": [
       [
         {
@@ -13,7 +13,8 @@ A creamy sip, a warm embrace.
 
 What drink am I? ☕""",
             "Latte",
-            'They serve over a thousand students every day!'
+            'They serve over a thousand students every day!',
+            false,
           ]
         }
       ],
@@ -29,7 +30,8 @@ My name is known in timber, far and wide.
 
 What Company I? 🌲""",
             "RoyOMartin",
-            'RoyOMartin is one of the most successful manufacturers of wood products in the South!'
+            'RoyOMartin is one of the most successful manufacturers of wood products in the South!',
+            false,
           ]
         }
       ],
@@ -48,7 +50,8 @@ He goes by a nickname which may seem quite blunt.
 
 What is the nickname of the person who donated to me?""",
             "Bill",
-            'This is one of the most popular spots for students to rest between classes and study with friends.'
+            'This is one of the most popular spots for students to rest between classes and study with friends.',
+            false,
           ]
         }
       ],
@@ -65,7 +68,8 @@ His name is known to all who come here.
 
 What am I? 🤖""",
             "Toby",
-            'Every year Bengal Bots, a club that offers experience with different types of robots, hosts a battlebots event at PFT!'
+            'Every year Bengal Bots, a club that offers experience with different types of robots, hosts a battlebots event at PFT!',
+            false,
           ]
         }
       ],
@@ -84,7 +88,8 @@ Is the School of Electrical Engineering and Computer Science Office, where minds
 
 What is my room number?""",
             "3325",
-            'This is where many students can come to learn more about what Computer Science and Electrical Engineering has to offer.'
+            'This is where many students can come to learn more about what Computer Science and Electrical Engineering has to offer.',
+            false,
           ]
         }
       ],
@@ -103,7 +108,8 @@ To unlock the answer and set you free?
 
 What are the last four digits of the number you'll see?""",
             "1229",
-            'A multi-pass floating head can allow for fluids to pass through the tubes multiple times, increasing the heat transfer efficiency!'
+            'A multi-pass floating head can allow for fluids to pass through the tubes multiple times, increasing the heat transfer efficiency!',
+            false,
           ]
         }
       ],
@@ -123,5 +129,24 @@ What are the last four digits of the number you'll see?""",
       }
     }
     return 'Fun fact not found';
+  }
+
+  // Function to get a Map of locations and their progress status
+  static Map<String, bool> getLocationStatus() {
+    Map<String, bool> locationStatus = {};
+
+    // Iterate through each category in the riddles map
+    riddles.forEach((level, levelRiddles) {
+      for (final riddleGroup in levelRiddles) {
+        for (final riddle in riddleGroup) {
+          // Extract the location name and its progress status
+          riddle.forEach((location, details) {
+            locationStatus[location] = details[3]; // The progress status is the 4th element
+          });
+        }
+      }
+    });
+
+    return locationStatus;
   }
 }
