@@ -14,12 +14,6 @@ class ProgressPage extends StatefulWidget {
 class _ProgressPageState extends State<ProgressPage> {
   int _selectedIndex = 2;
   String _sampleString = "0";
-  Map<String, bool> placeHolderProgress = {
-    "1": false,
-    "2": false,
-    "3": false,
-    "4": false,
-  };
 
   var progress = RiddleData.getLocationStatus();
 
