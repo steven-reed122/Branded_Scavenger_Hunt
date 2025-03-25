@@ -8,7 +8,8 @@ class LevelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locations = RiddleData.locations[level] ?? [];
+
+    final locations = RiddleData.riddles[level]?.expand((entry) => entry).map((map) => map.keys.first).toList() ?? [];
 
     return Scaffold(
       backgroundColor: const Color(0xFF461D7C),

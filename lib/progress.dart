@@ -12,6 +12,21 @@ class ProgressPage extends StatefulWidget {
 
 class _ProgressPageState extends State<ProgressPage> {
   int _selectedIndex = 2;
+  String _sampleString = "0";
+  Map<String, bool> placeHolderProgress = {
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false,
+  };
+
+  void textReturn(String value) {
+    String text = "50";
+
+    setState(() {
+      _sampleString = text;
+    });
+  }
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
@@ -34,13 +49,60 @@ class _ProgressPageState extends State<ProgressPage> {
       MaterialPageRoute(builder: (context) => destination),
     );
   }
-  
+
+  Widget _buildProgressSection(Map<String, bool> progress) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Your Progress',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            ...progress.keys.map((location) {
+              final completed = progress[location] ?? false;
+              return Row(
+                children: [
+                  Icon(
+                    completed
+                        ? Icons.check_circle
+                        : Icons.radio_button_unchecked,
+                    color: completed ? Colors.green : Colors.grey,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(location, style: const TextStyle(fontSize: 16)),
+                ],
+              );
+            }).toList(),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF461D7C),
+        title: Center(
+          child: const Text(
+            'Your Progress',
+            style: TextStyle(color: Color(0xFFFFFFFF)),
+          ),
+        ),
+      ),
       body: Column(
-        children: [Text("Progress Page")],
+        children: [Column(
+          children: [
+            Text("You've completed $_sampleString% of the scavenger hunt"),
+            _buildProgressSection(placeHolderProgress),
+          ],
+        )],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFFFFFFFF),

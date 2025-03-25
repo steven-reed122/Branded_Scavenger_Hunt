@@ -22,7 +22,10 @@ class _LocationPageState extends State<LocationPage> {
   bool _showFunFact = false;
 
   String get _riddleText {
-    final levelRiddles = RiddleData.riddles[widget.level] ?? [];
+    final levelRiddles = RiddleData.riddles[widget.level]
+        ?.expand((entry) => entry) // Flatten the inner lists
+        .map((map) => map.values.first.first) // Extract the riddle text
+        .toList() ?? [];
     for (final riddle in levelRiddles) {
       if (riddle[0] == widget.locationName) {
         return riddle[1];
@@ -32,9 +35,13 @@ class _LocationPageState extends State<LocationPage> {
   }
 
   void _checkAnswer() {
-    final correctAnswer = RiddleData.correctKeywords[widget.locationName] ?? '';
+    String? correctAnswer = RiddleData.riddles[widget.level]
+        ?.expand((entry) => entry) // Flatten the inner lists
+        .firstWhere(
+            (map) => map.containsKey(widget.locationName),
+        orElse: () => {})[widget.locationName]!.last;
     if (_answerController.text.trim().toLowerCase() ==
-        correctAnswer.toLowerCase()) {
+        correctAnswer?.toLowerCase()) {
       setState(() {
         _feedback = 'Correct! 🎉';
         _isCorrect = true;
