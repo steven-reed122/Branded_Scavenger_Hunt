@@ -68,10 +68,13 @@ class _ProgressPageState extends State<ProgressPage> {
                     completed
                         ? Icons.check_circle
                         : Icons.radio_button_unchecked,
-                    color: completed ? Colors.green : Colors.grey,
+                    color: Color(0xFF461D7C),
                   ),
                   const SizedBox(width: 8),
-                  Text(location, style: const TextStyle(fontSize: 16)),
+                  Text(
+                    location,
+                    style: const TextStyle(fontSize: 16, color: Color(0xFF461D7C)),
+                  ),
                 ],
               );
             }).toList(),

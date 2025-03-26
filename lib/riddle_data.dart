@@ -149,4 +149,19 @@ What are the last four digits of the number you'll see?""",
 
     return locationStatus;
   }
+
+  static void markLocationDone(String floor, String locationName) {
+    final levelRiddles = riddles[floor];
+
+    if (levelRiddles != null) {
+      for (final entry in levelRiddles) {
+        for (final riddle in entry) {
+          if (riddle.containsKey(locationName)) {
+            riddle[locationName]![3] = true; // Update status to true
+            return;
+          }
+        }
+      }
+    }
+  }
 }

@@ -55,6 +55,7 @@ class _LocationPageState extends State<LocationPage> {
         _feedback = 'Correct! 🎉';
         _isCorrect = true;
         _showFunFact = true;
+        RiddleData.markLocationDone(widget.level, widget.locationName);
       });
     } else {
       setState(() {
