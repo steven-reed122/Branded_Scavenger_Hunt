@@ -183,20 +183,34 @@ What are the last four digits of the number you'll see?""",
       ],
       [
         {
-          "Placeholder 1": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Dr. Shepard's Office": [
+            """In the realm of code and testing's art,
+Where software quality plays its part.
+A professor's office, where knowledge flows,
+Teaching systems that software shows.
+What number marks this teaching space,
+Where Dr. Shepard sets the pace?
+
+What is the room number?""",
+            "3272",
+            'Dr. Shepard teaches software quality and testing, and software system development to future engineers!',
             false,
           ]
         }
       ],
       [
         {
-          "Placeholder 2": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Dr. Nash's Office": [
+            """In the world of software, systems, and code,
+Where development paths are shown and showed.
+A professor's office, where knowledge grows,
+Teaching the future that software knows.
+What number marks this teaching space,
+Where Dr. Nash sets the pace?
+
+What is the room number?""",
+            "3272H",
+            'Dr. Nash graduated from Mississippi State University before joining LSU!',
             false,
           ]
         }
