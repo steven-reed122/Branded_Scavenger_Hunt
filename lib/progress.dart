@@ -93,33 +93,6 @@ class _ProgressPageState extends State<ProgressPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF461D7C),
-        toolbarHeight: 40,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: SizedBox(
-            width: 64, // Increase width to 1 inch
-            height: 48, // Adjust height proportionally
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Image.asset(
-                'assets/images/LSU_logo.png',
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  print('Error loading logo: $error');
-                  return const Icon(
-                    Icons.error_outline,
-                    color: Color(0xFF461D7C),
-                    size: 24,
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
         title: const Text(
           'Your Progress',
           style: TextStyle(
@@ -128,7 +101,7 @@ class _ProgressPageState extends State<ProgressPage> {
             fontSize: 28, // Increase font size
             fontWeight: FontWeight.bold, // Make text bold
           ),
-          textAlign: TextAlign.center, // Center the text
+          textAlign: TextAlign.center,
         ),
         centerTitle: true,
       ),
