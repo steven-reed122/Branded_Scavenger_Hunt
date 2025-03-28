@@ -73,8 +73,8 @@ class _LevelSelectorState extends State<LevelSelector> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: SizedBox(
-            width: 32,
-            height: 24,
+            width: 64, // Increase width to 1 inch
+            height: 48, // Adjust height proportionally
             child: Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
