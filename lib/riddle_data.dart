@@ -35,6 +35,26 @@ What Company I? 🌲""",
           ]
         }
       ],
+      [
+        {
+          "Placeholder 1": [
+            """Placeholder""",
+            "Placeholder",
+            'They serve over a thousand students every day!',
+            false,
+          ]
+        }
+      ],
+      [
+        {
+          "Placeholder 2": [
+            """Placeholder""",
+            "Placeholder",
+            'They serve over a thousand students every day!',
+            false,
+          ]
+        }
+      ],
     ],
     "2": [
       [
@@ -69,6 +89,26 @@ His name is known to all who come here.
 What am I? 🤖""",
             "Toby",
             'Every year Bengal Bots, a club that offers experience with different types of robots, hosts a battlebots event at PFT!',
+            false,
+          ]
+        }
+      ],
+      [
+        {
+          "Placeholder 1": [
+            """Placeholder""",
+            "Placeholder",
+            'They serve over a thousand students every day!',
+            false,
+          ]
+        }
+      ],
+      [
+        {
+          "Placehodler 2": [
+            """Placeholder""",
+            "Placehodler",
+            'They serve over a thousand students every day!',
             false,
           ]
         }
@@ -109,6 +149,26 @@ To unlock the answer and set you free?
 What are the last four digits of the number you'll see?""",
             "1229",
             'A multi-pass floating head can allow for fluids to pass through the tubes multiple times, increasing the heat transfer efficiency!',
+            false,
+          ]
+        }
+      ],
+      [
+        {
+          "Placeholder 1": [
+            """Placeholder""",
+            "Placeholder",
+            'They serve over a thousand students every day!',
+            false,
+          ]
+        }
+      ],
+      [
+        {
+          "Placeholder 2": [
+            """Placeholder""",
+            "Placeholder",
+            'They serve over a thousand students every day!',
             false,
           ]
         }
