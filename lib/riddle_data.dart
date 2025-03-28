@@ -37,20 +37,34 @@ What Company I? 🌲""",
       ],
       [
         {
-          "Placeholder 1": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Chevron Center": [
+            """In the heart of PFT, where innovation thrives,
+A center of learning where knowledge arrives.
+With Chevron's name proudly displayed,
+Where students and faculty have stayed.
+What is this place where ideas flow free?
+The Chevron Center, where minds can be.
+
+What is my room number?""",
+            "1269",
+            'The Chevron Center is also known as the Center for Engineering Education!',
             false,
           ]
         }
       ],
       [
         {
-          "Placeholder 2": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Grand Stairs": [
+            """Near the Chevron Center, I stand so grand,
+A staircase of beauty, both wide and planned.
+With platforms that offer a place to rest,
+A meeting spot where students are blessed.
+Count my platforms, if you dare,
+The number you find will be quite fair.
+
+How many platforms are there?""",
+            "Two",
+            'Many students use these stairs to read and study daily!',
             false,
           ]
         }
