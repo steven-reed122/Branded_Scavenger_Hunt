@@ -111,39 +111,24 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const SizedBox(height: 40),
             // Main Title
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 32),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.6),
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
+            const Text(
+              'Welcome to the\nPFT Scavenger Hunt!',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontFamily: 'Proxima Nova',
+                height: 1.2,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    offset: Offset(2, 2),
+                    blurRadius: 4,
                   ),
                 ],
               ),
-              child: const Text(
-                'Welcome to the\nPFT Scavenger Hunt!',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 1.5,
-                  fontFamily: 'Proxima Nova',
-                  height: 1.2,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black54,
-                      offset: Offset(2, 2),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
-              ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
             // Feature Cards
@@ -214,66 +199,44 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildFeatureCard({
-    required IconData icon,
-    required String title,
-    required String description,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
+  Widget _buildFeatureCard({required IconData icon, required String title, required String description}) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: const Color(0xFF461D7C).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              icon,
-              color: const Color(0xFF461D7C),
-              size: 32,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF461D7C),
-                    fontFamily: 'Proxima Nova',
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Icon(icon, size: 40, color: Color(0xFF461D7C)),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Proxima Nova',
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black.withOpacity(0.7),
-                    fontFamily: 'Proxima Nova',
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                      fontFamily: 'Proxima Nova',
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

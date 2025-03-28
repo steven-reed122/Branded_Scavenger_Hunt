@@ -73,8 +73,8 @@ class _LevelSelectorState extends State<LevelSelector> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: SizedBox(
-            width: 32,
-            height: 24,
+            width: 64,
+            height: 48,
             child: Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
@@ -107,6 +107,7 @@ class _LevelSelectorState extends State<LevelSelector> {
         ),
         centerTitle: true,
       ),
+      backgroundColor: const Color(0xFF461D7C), // Set background to purple
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

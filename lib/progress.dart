@@ -73,7 +73,11 @@ class _ProgressPageState extends State<ProgressPage> {
                   const SizedBox(width: 8),
                   Text(
                     location,
-                    style: const TextStyle(fontSize: 16, color: Color(0xFF461D7C)),
+                    style: const TextStyle(
+                      fontSize: 18, // Increase font size
+                      fontWeight: FontWeight.bold, // Make text bold
+                      color: Color(0xFF461D7C),
+                    ),
                   ),
                 ],
               );
@@ -89,18 +93,57 @@ class _ProgressPageState extends State<ProgressPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF461D7C),
-        title: Center(
-          child: const Text(
-            'Your Progress',
-            style: TextStyle(color: Color(0xFFFFFFFF)),
+        toolbarHeight: 40,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: SizedBox(
+            width: 64, // Increase width to 1 inch
+            height: 48, // Adjust height proportionally
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Image.asset(
+                'assets/images/LSU_logo.png',
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading logo: $error');
+                  return const Icon(
+                    Icons.error_outline,
+                    color: Color(0xFF461D7C),
+                    size: 24,
+                  );
+                },
+              ),
+            ),
           ),
         ),
+        title: const Text(
+          'Your Progress',
+          style: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontFamily: 'Proxima Nova',
+            fontSize: 28, // Increase font size
+            fontWeight: FontWeight.bold, // Make text bold
+          ),
+          textAlign: TextAlign.center, // Center the text
+        ),
+        centerTitle: true,
       ),
+      backgroundColor: const Color(0xFF461D7C), // Set background to purple
       body: Column(
         children: [Column(
           children: [
-            Text("You've completed $_sampleString% of the scavenger hunt"),
-            _buildProgressSection(progress),
+            Text(
+              "You've completed $_sampleString% of the scavenger hunt",
+              style: const TextStyle(
+                fontSize: 22, // Increase font size
+                fontWeight: FontWeight.bold, // Make text bold
+                color: Colors.white,
+              ),
+            ),
           ],
         )],
       ),
