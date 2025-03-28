@@ -73,7 +73,7 @@ class _LevelSelectorState extends State<LevelSelector> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: SizedBox(
-            width: 64,
+            width: 500,
             height: 48,
             child: Container(
               padding: const EdgeInsets.all(2),
@@ -96,16 +96,6 @@ class _LevelSelectorState extends State<LevelSelector> {
             ),
           ),
         ),
-        title: const Text(
-          'Levels',
-          style: TextStyle(
-            color: Color(0xFFFFFFFF),
-            fontFamily: 'Proxima Nova',
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
       ),
       backgroundColor: const Color(0xFF461D7C), // Set background to purple
       body: ListView(

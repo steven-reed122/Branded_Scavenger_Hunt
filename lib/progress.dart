@@ -133,19 +133,24 @@ class _ProgressPageState extends State<ProgressPage> {
         centerTitle: true,
       ),
       backgroundColor: const Color(0xFF461D7C), // Set background to purple
-      body: Column(
-        children: [Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Text(
-              "You've completed $_sampleString% of the scavenger hunt",
-              style: const TextStyle(
-                fontSize: 22, // Increase font size
-                fontWeight: FontWeight.bold, // Make text bold
-                color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "You've completed $_sampleString% of the scavenger hunt",
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
+            _buildProgressSection(progress), // Ensure this is included
           ],
-        )],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFFFFFFFF),
