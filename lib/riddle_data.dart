@@ -109,20 +109,34 @@ What am I? 🤖""",
       ],
       [
         {
-          "Placeholder 1": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Drone": [
+            """Near Toby the robot, I take flight,
+A controller in hand, my name shines bright.
+With wings spread wide, I soar through the air,
+A marvel of engineering, beyond compare.
+My name on the controller, a clue to share,
+What am I called? Do you dare?
+
+What is the name on the controller?""",
+            "Taranis",
+            'The Taranis controller is a high-end radio control system used for professional drone operations!',
             false,
           ]
         }
       ],
       [
         {
-          "Placeholder 2": [
-            """Placeholder""",
-            "Placeholder",
-            'They serve over a thousand students every day!',
+          "Crash Simulation Room": [
+            """Behind these walls, a car stands hollow,
+Where safety tests make engineers follow.
+A room of impact, where crashes are planned,
+Where vehicle safety is well-manned.
+What number marks this testing space,
+Where engineering safety takes its place?
+
+What is the room number?""",
+            "2215",
+            'The crash simulation room is used to test vehicle safety features and analyze impact scenarios!',
             false,
           ]
         }
