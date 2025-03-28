@@ -107,6 +107,7 @@ class _LevelSelectorState extends State<LevelSelector> {
         ),
         centerTitle: true,
       ),
+      backgroundColor: const Color(0xFF461D7C), // Set background to purple
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

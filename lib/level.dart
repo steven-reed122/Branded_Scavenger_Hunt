@@ -32,8 +32,12 @@ class LevelPage extends StatelessWidget {
           style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Proxima Nova',
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
           ),
+          textAlign: TextAlign.center,
         ),
+        centerTitle: true,
       ),
       backgroundColor: const Color(0xFF461D7C),
       body: SingleChildScrollView(
@@ -60,7 +64,7 @@ class LevelPage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isDone ? Colors.green : const Color(0xFFFDD023),
+                      backgroundColor: const Color(0xFFFDD023),
                       foregroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
@@ -73,7 +77,8 @@ class LevelPage extends StatelessWidget {
                         Text(
                           location,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                             fontFamily: 'Proxima Nova',
                           ),
                         ),
