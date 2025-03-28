@@ -15,14 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'PFT Scavenger Hunt',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF461D7C)),
-        useMaterial3: true,
-        fontFamily: 'Proxima Nova', // Default font set
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontFamily: "Proxima Nova"),
-          bodyMedium: TextStyle(fontFamily: "Proxima Nova"),
-          bodySmall: TextStyle(fontFamily: "Proxima Nova"),
-        ),
+        primarySwatch: Colors.purple,
+        fontFamily: 'Proxima Nova',
       ),
       home: const MyHomePage(title: 'PFT Scavenger Hunt'),
     );
@@ -62,50 +56,59 @@ class _MyHomePageState extends State<MyHomePage> {
     // For index 0 (home), we don't need to navigate since we're already on MyHomePage
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF461D7C),
-        toolbarHeight: 40,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: SizedBox(
-            width: 32,
-            height: 24,
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Image.asset(
-                'assets/images/LSU_logo.png',
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  print('Error loading logo: $error');
-                  return const Icon(
-                    Icons.error_outline,
-                    color: Color(0xFF461D7C),
-                    size: 24,
-                  );
-                },
-              ),
+  PreferredSizeWidget _buildAppBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(120), // Increased height for larger logo
+      child: AppBar(
+        backgroundColor: const Color(0xFF461D7C),
+        flexibleSpace: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 48), // Move logo down by half an inch
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 144, // Increased width (1.5 inches)
+                  height: 96, // Keep height at 1 inch
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Image.asset(
+                    'assets/images/LSU_logo.png',
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      print('Error loading logo: $error');
+                      return const Icon(
+                        Icons.error_outline,
+                        color: Color(0xFF461D7C),
+                        size: 48,
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
         title: const Text(
-          'PFT Scavenger Hunt',
+          '',
           style: TextStyle(
             color: Color(0xFFFFFFFF),
             fontFamily: 'Proxima Nova',
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
       ),
-      backgroundColor: Color(0xFF461D7C),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(),
+      backgroundColor: const Color(0xFF461D7C),
       body: SafeArea(
         child: Column(
           children: [
@@ -174,9 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFFFFFFFF),
-        selectedItemColor: Color(0xFFFDD023),
-        unselectedItemColor: Color(0xFF461D7C),
+        backgroundColor: const Color(0xFFFFFFFF),
+        selectedItemColor: const Color(0xFFFDD023),
+        unselectedItemColor: const Color(0xFF461D7C),
         currentIndex: _selectedIndex, // Highlight selected tab
         onTap: _onItemTapped,
         selectedLabelStyle: const TextStyle(fontFamily: 'Proxima Nova'),
