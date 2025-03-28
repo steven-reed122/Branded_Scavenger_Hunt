@@ -69,13 +69,43 @@ class _LevelSelectorState extends State<LevelSelector> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF461D7C),
+        toolbarHeight: 40,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: SizedBox(
+            width: 32,
+            height: 24,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Image.asset(
+                'assets/images/LSU_logo.png',
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading logo: $error');
+                  return const Icon(
+                    Icons.error_outline,
+                    color: Color(0xFF461D7C),
+                    size: 24,
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
         title: const Text(
-          'Maybe LSU logo will go here',
+          'Levels',
           style: TextStyle(
             color: Color(0xFFFFFFFF),
             fontFamily: 'Proxima Nova',
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
