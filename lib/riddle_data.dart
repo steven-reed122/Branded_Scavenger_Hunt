@@ -105,9 +105,9 @@ What am I? 🤖""",
       ],
       [
         {
-          "Placehodler 2": [
+          "Placeholder 2": [
             """Placeholder""",
-            "Placehodler",
+            "Placeholder",
             'They serve over a thousand students every day!',
             false,
           ]
@@ -206,7 +206,7 @@ What are the last four digits of the number you'll see?""",
         }
       }
     });
-
+    print(locationStatus);
     return locationStatus;
   }
 
