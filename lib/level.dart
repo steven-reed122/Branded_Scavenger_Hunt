@@ -1,100 +1,91 @@
 import 'package:flutter/material.dart';
-import 'riddle_data.dart';
 import 'location_page.dart';
 
 class LevelPage extends StatelessWidget {
   final String level;
-  const LevelPage({super.key, required this.level});
+
+  const LevelPage({Key? key, required this.level}) : super(key: key);
+
+  List<String> _getLocations() {
+    final locationsByLevel = {
+      "1": ["Panera", "Auditorium", "Chevron Center", "Placeholder 2"],
+      "2": ["Student Gathering Space", "Robots", "Placeholder 3", "Placeholder 4"],
+      "3": ["School of EE and CS", "Bayport Technical Center", "Placeholder 5", "Placeholder 6"],
+    };
+
+    return locationsByLevel[level] ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final locations = _getLocations();
+    final locationStatus = <String, bool>{}; // Placeholder for location status
 
-    final locations = RiddleData.riddles[level]?.expand((entry) => entry).map((map) => map.keys.first).toList() ?? [];
+    print('Building UI with locations: $locations');
+    print('Location status: $locationStatus');
 
     return Scaffold(
-      backgroundColor: const Color(0xFF461D7C),
       appBar: AppBar(
+        backgroundColor: const Color(0xFF461D7C),
         title: Text(
-          'Level $level',
+          'Explore Level $level',
           style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Proxima Nova',
           ),
         ),
-        backgroundColor: const Color(0xFF461D7C),
-        foregroundColor: Colors.white,
-        elevation: 0,
       ),
-      body: Container(
-        child: Center(
+      backgroundColor: const Color(0xFF461D7C),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              /// ✅ This is the newly styled text box for "Explore Level $level"
-              Container(
-                padding:
-                const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-                decoration: BoxDecoration(
-                  color: Colors.black
-                      .withOpacity(0.6), // Semi-transparent black box
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  'Explore Level $level',
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 1.5,
-                    fontFamily: 'Proxima Nova',
-                    shadows: [
-                      Shadow(
-                        color: Colors.black54,
-                        offset: Offset(2, 2),
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// ✅ Location Buttons
-              ...locations.map((locationName) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => LocationPage(
-                          level: level,
-                          locationName: locationName,
+              const SizedBox(height: 8),
+              ...locations.map((location) {
+                final isDone = locationStatus[location] ?? false;
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LocationPage(
+                            level: level,
+                            locationName: location,
+                          ),
                         ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isDone ? Colors.green : const Color(0xFFFDD023),
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFDD023),
-                    foregroundColor: Colors.black,
-                    minimumSize: const Size(180, 50),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 12,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          location,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'Proxima Nova',
+                          ),
+                        ),
+                        if (isDone) ...[
+                          const SizedBox(width: 8),
+                          const Icon(Icons.check_circle, color: Colors.black),
+                        ],
+                      ],
                     ),
                   ),
-                  child: Text(
-                    locationName,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Proxima Nova',
-                    ),
-                  ),
-                ),
-              )).toList(),
+                );
+              }).toList(),
             ],
           ),
         ),

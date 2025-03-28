@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'riddle_data.dart';
 
 class LocationPage extends StatefulWidget {
   final String level;
@@ -22,40 +21,59 @@ class _LocationPageState extends State<LocationPage> {
   bool _showFunFact = false;
 
   String get _riddleText {
-    // Find the level in the riddles map
-    final levelRiddles = RiddleData.riddles[widget.level];
+    final riddles = {
+      "1": {
+        "Panera": "At Panera, where you love to stay, \nThe sign in front calls out my name. \nSteamed milk swirls in coffee's embrace, \nA creamy sip, a warm embrace. \n\nWhat drink am I? ☕",
+        "Auditorium": "By glass doors in the hallway near,\nBehind Capstone stairs, it becomes clear.\nA purple sign beholds my name,\nSo all who see it may proclaim.\nThat to the creation of building I donated with pride,\nMy name is known in timber, far and wide.\n\nWhat Company I? 🌲",
+        "Chevron Center": "In the heart of PFT, where innovation thrives,\nA center of learning where knowledge arrives.\nWith Chevron's name proudly displayed,\nWhere students and faculty have stayed.\nWhat is this place where ideas flow free?\nThe Chevron Center, where minds can be.\n\nWhat is the room number of the Chevron Center?",
+        "Placeholder 2": "Placeholder riddle text",
+      },
+      "2": {
+        "Student Gathering Space": "On the second floor with a staircase in rear\nall students in need may cometh here.\nI contain chairs and tables and sofas galore.\nBehind me is a glass wall where you can see much more.\n\nMy donator's name is on a plaque in front.\nHe goes by a nickname which may seem quite blunt.\n\nWhat is the nickname of the person who donated to me?",
+        "Robots": "Behind a glass wall, where robots reside,\nOn the second floor, with others by his side.\nWith a yellow name, shining bright,\nA ramp in front, ready to fight.\n\nWho is this robot, standing so near?\nHis name is known to all who come here.\n\nWhat am I? 🤖",
+        "Placeholder 3": "Placeholder riddle text",
+        "Placeholder 4": "Placeholder riddle text",
+      },
+      "3": {
+        "School of EE and CS": "On the third floor, where knowledge is king,\nA glass front office, many students it brings.\nHome to engineers and coders alike,\nBehind these walls, innovations strike.\n\nThe room's name, where brilliance does reside,\nIs the School of Electrical Engineering and Computer Science Office, where minds collide.\n\nWhat is my room number?",
+        "Bayport Technical Center": "Behind a glass wall, I stand with pride,\nA mechanical tube, where fluids glide.\nOn the third floor, I do reside,\nWhere innovation and engineering collide.\n\nA plaque stands before me, with the name Bayport in line,\nThe last four of the phone number, a clue to define.\nCan you guess what these numbers might be,\nTo unlock the answer and set you free?\n\nWhat are the last four digits of the number you'll see?",
+        "Placeholder 5": "Placeholder riddle text",
+        "Placeholder 6": "Placeholder riddle text",
+      },
+    };
 
-    // If the level exists, proceed to find the location
-    if (levelRiddles != null) {
-      for (final entry in levelRiddles) {
-        for (final riddle in entry) {
-          if (riddle.containsKey(widget.locationName)) {
-            // Return the riddle text for the location
-            return riddle[widget.locationName]?[0] ?? 'Riddle not found';
-          }
-        }
-      }
-    }
-
-    // Return an appropriate message if the riddle is not found
-    return 'Riddle not found for the location $widget.locationName at level $widget.level';
+    return riddles[widget.level]?[widget.locationName] ?? 'Riddle not found';
   }
 
   void _checkAnswer() {
-    String? correctAnswer = RiddleData.riddles[widget.level]
-        ?.expand((entry) => entry) // Flatten the inner lists
-        .firstWhere(
-            (map) => map.containsKey(widget.locationName),
-        orElse: () => {})[widget.locationName]![1];
-    print("Answer");
-    print(correctAnswer);
+    final answers = {
+      "1": {
+        "Panera": "Latte",
+        "Auditorium": "RoyOMartin",
+        "Chevron Center": "1101",
+        "Placeholder 2": "Placeholder",
+      },
+      "2": {
+        "Student Gathering Space": "Bill",
+        "Robots": "Toby",
+        "Placeholder 3": "Placeholder",
+        "Placeholder 4": "Placeholder",
+      },
+      "3": {
+        "School of EE and CS": "3325",
+        "Bayport Technical Center": "1229",
+        "Placeholder 5": "Placeholder",
+        "Placeholder 6": "Placeholder",
+      },
+    };
+
+    String? correctAnswer = answers[widget.level]?[widget.locationName];
     if (_answerController.text.trim().toLowerCase() ==
         correctAnswer?.toLowerCase()) {
       setState(() {
         _feedback = 'Correct! 🎉';
         _isCorrect = true;
         _showFunFact = true;
-        RiddleData.markLocationDone(widget.level, widget.locationName);
       });
     } else {
       setState(() {
@@ -107,6 +125,7 @@ class _LocationPageState extends State<LocationPage> {
                       style: const TextStyle(
                         fontSize: 18,
                         height: 1.5,
+                        color: Colors.black87,
                         fontFamily: 'Proxima Nova',
                       ),
                       textAlign: TextAlign.center,
@@ -136,6 +155,7 @@ class _LocationPageState extends State<LocationPage> {
                   color: Colors.black,
                   fontFamily: 'Proxima Nova',
                 ),
+                onSubmitted: (_) => _checkAnswer(),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
@@ -190,7 +210,7 @@ class _LocationPageState extends State<LocationPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        RiddleData.getFunFact(widget.level, widget.locationName),
+                        'Fun fact not available',
                         style: const TextStyle(
                           fontSize: 16,
                           height: 1.5,

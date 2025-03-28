@@ -1,4 +1,3 @@
-import 'package:branded_scavenger_hunt/riddle_data.dart';
 import 'package:flutter/material.dart';
 import 'level.dart';
 import 'main.dart';
@@ -15,7 +14,21 @@ class _ProgressPageState extends State<ProgressPage> {
   int _selectedIndex = 2;
   String _sampleString = "0";
 
-  var progress = RiddleData.getLocationStatus();
+  // Local map to track progress
+  final Map<String, bool> progress = {
+    "Panera": false,
+    "Auditorium": false,
+    "Chevron Center": false,
+    "Placeholder 2": false,
+    "Student Gathering Space": false,
+    "Robots": false,
+    "Placeholder 3": false,
+    "Placeholder 4": false,
+    "School of EE and CS": false,
+    "Bayport Technical Center": false,
+    "Placeholder 5": false,
+    "Placeholder 6": false,
+  };
 
   void textReturn(String value) {
     String text = "50";
