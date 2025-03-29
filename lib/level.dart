@@ -2,20 +2,48 @@ import 'package:flutter/material.dart';
 import 'riddle_data.dart';
 import 'location_page.dart';
 
-class LevelPage extends StatelessWidget {
+class LevelPage extends StatefulWidget {
   final String level;
   const LevelPage({super.key, required this.level});
 
   @override
-  Widget build(BuildContext context) {
+  _LevelPageState createState() => _LevelPageState();
+}
 
-    final locations = RiddleData.riddles[level]?.expand((entry) => entry).map((map) => map.keys.first).toList() ?? [];
+class _LevelPageState extends State<LevelPage> {
+  List<String> locations = [];
+
+  @override
+  void initState() {
+    super.initState();
+    updateLocations(); // Update when the page first loads
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    updateLocations(); // Called when dependencies change (such as when navigating back)
+  }
+
+  void updateLocations() {
+    setState(() {
+      locations = RiddleData.riddles[widget.level]
+          ?.expand((entry) => entry)
+          .map((map) => map.keys.first)
+          .toList() ??
+          [];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var isDone = RiddleData.getLocationStatus();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF461D7C),
         title: Text(
-          'Level $level',
+          'Level ${widget.level}',
           style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Proxima Nova',
@@ -35,20 +63,20 @@ class LevelPage extends StatelessWidget {
             children: [
               const SizedBox(height: 8),
               ...locations.map((location) {
-                final isDone = RiddleData.getLocationStatus();
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => LocationPage(
-                            level: level,
+                            level: widget.level,
                             locationName: location,
                           ),
                         ),
                       );
+                      updateLocations(); // Update when coming back
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFFDD023),
@@ -69,7 +97,7 @@ class LevelPage extends StatelessWidget {
                             fontFamily: 'Proxima Nova',
                           ),
                         ),
-                        if (isDone[location]?? false) ...[
+                        if (isDone[location] ?? false) ...[
                           const SizedBox(width: 8),
                           const Icon(Icons.check_circle, color: Colors.black),
                         ],
