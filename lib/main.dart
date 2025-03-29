@@ -137,20 +137,20 @@ class _MyHomePageState extends State<MyHomePage> {
             // Feature Cards
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
                   _buildFeatureCard(
                     icon: Icons.map,
                     title: 'Explore PFT',
                     description: 'Discover different locations and solve riddles throughout the building',
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   _buildFeatureCard(
                     icon: Icons.quiz,
                     title: 'Solve Riddles',
                     description: 'Test your knowledge with fun and challenging riddles',
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   _buildFeatureCard(
                     icon: Icons.track_changes,
                     title: 'Track Progress',
@@ -165,7 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text(
                 'Use the navigation bar below to get started',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                   color: Colors.white.withOpacity(0.8),
                   fontFamily: 'Proxima Nova',
                   height: 1.5,
@@ -209,11 +210,11 @@ class _MyHomePageState extends State<MyHomePage> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: Row(
           children: [
-            Icon(icon, size: 40, color: Color(0xFF461D7C)),
-            const SizedBox(width: 16),
+            Icon(icon, size: 32, color: Color(0xFF461D7C)),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,16 +222,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Proxima Nova',
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
                   Text(
                     description,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black54,
                       fontFamily: 'Proxima Nova',
                     ),
