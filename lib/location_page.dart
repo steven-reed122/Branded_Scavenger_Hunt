@@ -84,7 +84,7 @@ class _LocationPageState extends State<LocationPage> {
           children: [
             // Check if the riddle is done. If done, show the finished state.
             if (RiddleData.getLocationStatus()[widget.locationName] ?? false) ...[
-              Card(
+              const Card(
                 elevation: 4,
                 color: Colors.white,
                 child: Padding(
