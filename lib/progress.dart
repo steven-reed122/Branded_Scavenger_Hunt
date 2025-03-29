@@ -13,17 +13,9 @@ class ProgressPage extends StatefulWidget {
 
 class _ProgressPageState extends State<ProgressPage> {
   int _selectedIndex = 2;
-  String _sampleString = "0";
 
   var progress = RiddleData.getLocationStatus();
 
-  void textReturn(String value) {
-    String text = "50";
-
-    setState(() {
-      _sampleString = text;
-    });
-  }
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) return; // Prevent unnecessary reloads
@@ -45,6 +37,22 @@ class _ProgressPageState extends State<ProgressPage> {
       context,
       MaterialPageRoute(builder: (context) => destination),
     );
+  }
+
+  String done = ""; // Declare it first
+
+  void updateDone() {
+    var doneness = RiddleData.getLocationStatus();
+    int num_done = 0;
+    doneness.forEach((key, value) {
+      if(value == true) {
+        num_done++;
+      }
+    });
+    var percent_done = (num_done / doneness.length)*100;
+    print(doneness.length);
+    print(num_done);
+    done = percent_done.toStringAsFixed(1); // Now assign inside a function
   }
 
   Widget _buildProgressSection(Map<String, bool> progress) {
@@ -90,6 +98,7 @@ class _ProgressPageState extends State<ProgressPage> {
 
   @override
   Widget build(BuildContext context) {
+    updateDone();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF461D7C),
@@ -112,7 +121,7 @@ class _ProgressPageState extends State<ProgressPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                "You've completed $_sampleString% of the scavenger hunt",
+                "You've completed $done% of the scavenger hunt",
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
