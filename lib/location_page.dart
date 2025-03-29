@@ -20,8 +20,14 @@ class _LocationPageState extends State<LocationPage> {
   String? _feedback;
   bool _isCorrect = false;
   bool _showFunFact = false;
+  bool _wasPreviouslyCompleted = false;
 
-  bool done = false; // Assuming this will be updated later
+  @override
+  void initState() {
+    super.initState();
+    // Check if the riddle was previously completed when the page is opened
+    _wasPreviouslyCompleted = RiddleData.getLocationStatus()[widget.locationName] ?? false;
+  }
 
   String get _riddleText {
     final levelRiddles = RiddleData.riddles[widget.level];
@@ -53,7 +59,6 @@ class _LocationPageState extends State<LocationPage> {
         _isCorrect = true;
         _showFunFact = true;
         RiddleData.markLocationDone(widget.level, widget.locationName);
-        done = true; // Update the done variable when the user completes the riddle
       });
     } else {
       setState(() {
@@ -82,8 +87,8 @@ class _LocationPageState extends State<LocationPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Check if the riddle is done. If done, show the finished state.
-            if (RiddleData.getLocationStatus()[widget.locationName] ?? false) ...[
+            // Check if the riddle was previously completed
+            if (_wasPreviouslyCompleted) ...[
               const Card(
                 elevation: 4,
                 color: Colors.white,
@@ -169,7 +174,7 @@ class _LocationPageState extends State<LocationPage> {
                 ),
               ),
               const SizedBox(height: 20),
-
+              
               // Answer Input
               if (!_isCorrect) ...[
                 TextField(
